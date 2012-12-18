@@ -8,6 +8,7 @@ foreach ($events as $event) {
 	extract($event);
 
 	$image = ClassRegistry::init('PostMeta')->getImage($Event['post_id']);
+	$categories = ClassRegistry::init('Category')->getCategories($Event['post_id']);
 	extract(ClassRegistry::init('Location')->getLocation($Event['location_id']));
 
 	$to_return['info_evento'] = array(
@@ -18,7 +19,8 @@ foreach ($events as $event) {
 		'hora_fin' => $Event['event_end_time'],
 		'fecha_inicio' => $Event['event_start_date'],
 		'fecha_fin' => $Event['event_end_date'],
-		'precio' => null
+		'precio' => null,
+		'categorias' => $categories
 	);
 
 	$to_return['info_recinto'] = array(
@@ -28,7 +30,8 @@ foreach ($events as $event) {
 		'nombre_recinto' => $Location['location_name'],
 		'coordenadas' => $Location['location_latitude'] . ',' . $Location['location_longitude'],
 		'email' => null,
-		'direccion' => null,
+		'direccion' => $Location['location_address'],
+		'ciudad' => $Location['location_town'],
 		'telefono' => null
 	);
 
