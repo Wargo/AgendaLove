@@ -21,7 +21,7 @@ class PostMeta extends AppModel {
 			'fields' => array('meta_value')
 		));
 
-		return 'http://www.lovevalencia.com/wp-content/uploads/' . $url['PostMeta'];
+		return 'http://www.lovevalencia.com/wp-content/uploads/' . $url['PostMeta']['meta_value'];
 
 	}
 
