@@ -1,5 +1,6 @@
 <?php
-$events = ClassRegistry::init('Event')->getEvents();
+
+$events = ClassRegistry::init('Event')->getEvents($category, $limit);
 
 $return = array();
 
@@ -12,6 +13,8 @@ foreach ($events as $event) {
 	extract(ClassRegistry::init('Location')->getLocation($Event['location_id']));
 
 	$to_return['info_evento'] = array(
+		'event_id' => $Event['event_id'],
+		'post_id' => $Event['post_id'],
 		'nombre' => $Event['event_name'],
 		'descripcion' => strip_tags($Event['post_content']),
 		'images' => $image,
