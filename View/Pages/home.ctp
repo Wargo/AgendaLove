@@ -42,6 +42,14 @@ foreach ($events as $event) {
 
 }
 
-header('Content-type: application/json');
-echo json_encode($return);
+if ($debug) {
+
+	debug($return);
+
+} else {
+
+	header('Content-type: application/json');
+	echo json_encode($return);
+
+}
 die;
