@@ -1,6 +1,21 @@
 <?php
 class Category extends AppModel {
 
+	/*
+	10157 => 'Otros'
+	10158 => 'Fiestas'
+	10159 => 'Conciertos'
+	10160 => 'Ferias y congresos'
+	10161 => 'Deportes'
+	10162 => 'Eventos destacados'
+	10163 => 'Teatro'
+	10164 => 'Exposiciones'
+	10165 => 'Cine'
+	10469 => 'Eventos principales'
+	12907 => 'Niños'
+	13011 => 'Formación'
+	*/
+
 	public $useTable = false;
 
 	/*

@@ -12,6 +12,10 @@ foreach ($events as $event) {
 	$categories = ClassRegistry::init('Category')->getCategories($Event['post_id']);
 	$Location = ClassRegistry::init('Location')->getLocation($Event['location_id']);
 
+	if (!$categories) {
+		continue;
+	}
+
 	$to_return['info_evento'] = array(
 		'event_id' => trim($Event['event_id']),
 		'post_id' => trim($Event['post_id']),
@@ -23,6 +27,7 @@ foreach ($events as $event) {
 		'fecha_inicio' => trim($Event['event_start_date']),
 		'fecha_fin' => trim($Event['event_end_date']),
 		'precio' => null,
+		'link' => 'http://www.lovevalencia.com/evento/' . trim($Event['event_slug']),
 		'categorias' => $categories
 	);
 
