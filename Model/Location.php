@@ -5,11 +5,17 @@ class Location extends AppModel {
 
 	function getLocation($id) {
 
-		extract($this->find('first', array(
+		$location = $this->find('first', array(
 			'conditions' => array(
 				'location_id' => $id
 			)
-		)));
+		));
+
+		if (!$location) {
+			return false;
+		}
+
+		extract($location);
 
 		$metas = ClassRegistry::init('PostMeta')->find('all', array(
 			'conditions' => array(
