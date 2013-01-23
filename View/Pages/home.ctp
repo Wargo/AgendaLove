@@ -50,14 +50,24 @@ foreach ($events as $event) {
 	$day = substr($Event['event_start_date'], 8, 2);
 	$month = substr($Event['event_start_date'], 5, 2);
 
+/*
 	while ((int)$day != (int)$current_day) {
-		$return[zerofill((int)$current_month)][zerofill((int)$current_day)][] = array();
+		if (empty($return[zerofill((int)$current_month)][zerofill((int)$current_day)])) {
+			//debug(count($return[zerofill((int)$current_month)][zerofill((int)$current_day)]));
+			$return[zerofill((int)$current_month)][zerofill((int)$current_day)][] = array('ko' => compact('day', 'current_day', 'current_month'));
+		}
 		$current_day ++;
 		$aux_month = date('m', mktime(0, 0, 0, $current_month, $current_day, date('y')));
 		$aux_day = date('d', mktime(0, 0, 0, $current_month, $current_day, date('y')));
 		$current_month = $aux_month;
 		$current_day = $aux_day;
 	}
+
+	if ((int)$day == (int)$current_day) {
+		$current_day ++;
+	}
+
+*/
 
 	$return[$month][$day][] = $to_return;
 
@@ -68,7 +78,6 @@ foreach ($events as $event) {
 		$aux_day = date('d', mktime(0, 0, 0, substr($Event['event_start_date'], 5, 2), substr($Event['event_start_date'], 8, 2) + $i + 1, substr($Event['event_start_date'], 0, 4)));
 		$return[$aux_month][$aux_day][] = $to_return;
 	}
-
 
 }
 
