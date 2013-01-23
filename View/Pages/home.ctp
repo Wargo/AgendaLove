@@ -50,44 +50,25 @@ foreach ($events as $event) {
 	$day = substr($Event['event_start_date'], 8, 2);
 	$month = substr($Event['event_start_date'], 5, 2);
 
-
 	while ((int)$day != (int)$current_day) {
 		$return[zerofill((int)$current_month)][zerofill((int)$current_day)][] = array();
 		$current_day ++;
-
-		switch ($current_month) {
-			case '01':
-			case '03':
-			case '05':
-			case '07':
-			case '08':
-			case '10':
-			case '12':
-				if ($current_day > 31) {
-					$current_day = 1;
-					$current_month ++;
-				}
-				break;
-			case '02':
-				if ($current_day > 28) {
-					$current_day = 1;
-					$current_month ++;
-				}
-				break;
-			case '04':
-			case '06':
-			case '09':
-			case '11':
-				if ($current_day > 30) {
-					$current_day = 1;
-					$current_month ++;
-				}
-				break;
-		}
+		$aux_month = date('m', mktime(0, 0, 0, $current_month, $current_day, date('y')));
+		$aux_day = date('d', mktime(0, 0, 0, $current_month, $current_day, date('y')));
+		$current_month = $aux_month;
+		$current_day = $aux_day;
 	}
 
-
 	$return[$month][$day][] = $to_return;
+
+	$duration = (strtotime($Event['event_end_date']) / 86400 - strtotime($Event['event_start_date']) / 86400);
+
+	for ($i = 0; $i < $duration; $i ++) {
+		$aux_month = date('m', mktime(0, 0, 0, substr($Event['event_start_date'], 5, 2), substr($Event['event_start_date'], 8, 2) + $i + 1, substr($Event['event_start_date'], 0, 4)));
+		$aux_day = date('d', mktime(0, 0, 0, substr($Event['event_start_date'], 5, 2), substr($Event['event_start_date'], 8, 2) + $i + 1, substr($Event['event_start_date'], 0, 4)));
+		$return[$aux_month][$aux_day][] = $to_return;
+	}
+
 
 }
 
