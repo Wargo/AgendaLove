@@ -4,6 +4,9 @@ $events = ClassRegistry::init('Event')->getEvents($category, $limit);
 
 $return = array();
 
+$current_day = date('d');
+$current_month = date('m');
+
 foreach ($events as $event) {
 
 	extract($event);
@@ -44,7 +47,47 @@ foreach ($events as $event) {
 		'telefono' => trim($Location['telefono']),
 	);
 
-	$return[substr($Event['event_start_date'], 5, 2)][substr($Event['event_start_date'], 8, 2)][] = $to_return;
+	$day = substr($Event['event_start_date'], 8, 2);
+	$month = substr($Event['event_start_date'], 5, 2);
+
+
+	while ((int)$day != (int)$current_day) {
+		$return[zerofill((int)$current_month)][zerofill((int)$current_day)][] = array();
+		$current_day ++;
+
+		switch ($current_month) {
+			case '01':
+			case '03':
+			case '05':
+			case '07':
+			case '08':
+			case '10':
+			case '12':
+				if ($current_day > 31) {
+					$current_day = 1;
+					$current_month ++;
+				}
+				break;
+			case '02':
+				if ($current_day > 28) {
+					$current_day = 1;
+					$current_month ++;
+				}
+				break;
+			case '04':
+			case '06':
+			case '09':
+			case '11':
+				if ($current_day > 30) {
+					$current_day = 1;
+					$current_month ++;
+				}
+				break;
+		}
+	}
+
+
+	$return[$month][$day][] = $to_return;
 
 }
 
@@ -56,6 +99,16 @@ if ($debug) {
 
 	header('Content-type: application/json');
 	echo json_encode($return);
+
+}
+
+function zerofill($number) {
+
+	if ($number < 10) {
+		return '0' . $number;
+	} else {
+		return $number;
+	}
 
 }
 die;
