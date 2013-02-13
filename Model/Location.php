@@ -21,7 +21,7 @@ class Location extends AppModel {
 			'conditions' => array(
 				'post_id' => $Location['post_id'],
 				'meta_key' => array(
-					'Telefono', 'Web', 'Twitter', 'Facebook', 'Email'
+					'Telefono', 'Web', 'Twitter', 'Facebook', 'Email', 'ID-app'
 				)
 			)
 		));
@@ -31,6 +31,7 @@ class Location extends AppModel {
 		$Location['web'] = null;
 		$Location['email'] = null;
 		$Location['telefono'] = null;
+		$Location['id-app'] = null;
 
 		foreach ($metas as $meta) {
 			extract($meta);
