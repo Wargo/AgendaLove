@@ -36,7 +36,7 @@ foreach ($events as $event) {
 
 	$to_return['info_recinto'] = array(
 		'location_id' => trim($Location['location_id']),
-		'app_id' => trim($Location['id-app']),
+		'app_location_id' => trim($Location['id-app']),
 		'website' => trim($Location['web']),
 		'twitter' => trim($Location['twitter']),
 		'facebook' => trim($Location['facebook']),
