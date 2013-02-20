@@ -23,7 +23,7 @@ foreach ($events as $event) {
 		'event_id' => trim($Event['event_id']),
 		'post_id' => trim($Event['post_id']),
 		'nombre' => trim($Event['event_name']),
-		'descripcion' => trim(strip_tags($Event['post_content'])),
+		'descripcion' => trim(nl2br($Event['post_content'])),
 		'images' => trim($image),
 		'hora_inicio' => trim($Event['event_start_time']),
 		'hora_fin' => trim($Event['event_end_time']),
