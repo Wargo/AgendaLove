@@ -18,6 +18,9 @@ foreach ($events as $event) {
 	if (!$categories) {
 		continue;
 	}
+	if (!in_array('Eventos destacados', $categories)) {
+		continue;
+	}
 
 	$to_return['info_evento'] = array(
 		'event_id' => trim($Event['event_id']),

@@ -9,7 +9,9 @@ class Event extends AppModel {
 	function getEvents($category, $limit) {
 
 		$conditions = array(
-			'event_start_date >=' => date('Y-m-d'),
+			//'event_start_date >=' => date('Y-m-d'),
+			//'event_start_date >=' => date('Y-m-d H:i:s', strtotime("-120 days")),
+			'event_end_date >=' => date('Y-m-d'), //, strtotime("-120 days")),
 			'event_status' => 1
 		);
 
