@@ -1,10 +1,10 @@
 <?php
 
-$current = microtime();
-
-//debug(microtime() - $current);
+$current = microtime(true);
 
 $events = ClassRegistry::init('Event')->getEvents($category, $limit);
+
+//debug('primera consulta ' . (microtime(true) - $current));
 
 $return = array();
 
@@ -15,9 +15,14 @@ foreach ($events as $event) {
 
 	extract($event);
 
+//debug('foreach ' . (microtime(true) - $current));
+
 	$image = ClassRegistry::init('PostMeta')->getImage($Event['post_id']);
+//debug('image ' . (microtime(true) - $current));
 	$categories = ClassRegistry::init('Category')->getCategories($Event['post_id']);
+//debug('categorias ' . (microtime(true) - $current));
 	$Location = ClassRegistry::init('Location')->getLocation($Event['location_id']);
+//debug('location ' . (microtime(true) - $current));
 
 	if (!$categories) {
 		continue;
@@ -87,6 +92,8 @@ foreach ($events as $event) {
 		$return[$aux_month][$aux_day][] = $to_return;
 	}
 
+//debug('foreach ' . (microtime(true) - $current));
+
 }
 
 if ($debug) {
@@ -95,6 +102,7 @@ if ($debug) {
 
 } else {
 
+//debug('return ' . (microtime(true) - $current));
 	header('Content-type: application/json');
 	echo json_encode($return);
 
