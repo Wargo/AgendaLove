@@ -1,5 +1,9 @@
 <?php
 
+$current = microtime();
+
+//debug(microtime() - $current);
+
 $events = ClassRegistry::init('Event')->getEvents($category, $limit);
 
 $return = array();
