@@ -9,4 +9,14 @@ class EventsController extends AppController {
 
 	}
 
+	function gett($day = 0, $category = null, $debug = false) {
+
+		$this->layout = false;
+
+		$this->set(compact('day', 'category', 'debug'));
+
+		$this->render('get');
+
+	}
+
 }
