@@ -24,6 +24,12 @@ foreach ($events as $event) {
 	$Location = ClassRegistry::init('Location')->getLocation($Event['location_id']);
 //debug('location ' . (microtime(true) - $current));
 
+	$new_cats = array(18625, 13011, 18337, 19563, 19194); // Monólogos, Formación, Festivales, Moda, Musical
+
+	foreach ($new_cats as $c) {
+		unset($categories[$c]);
+	}
+
 	if (!$categories) {
 		continue;
 	}

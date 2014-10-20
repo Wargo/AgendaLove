@@ -28,7 +28,7 @@
 	//Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
 
 	Router::connect('/agenda/*', array('controller' => 'events', 'action' => 'gett'));
-	Router::connect('/*', array('controller' => 'events', 'action' => 'get'));
+	Router::connect('/', array('controller' => 'events', 'action' => 'get'));
 /**
  * ...and connect the rest of 'Pages' controller's urls.
  */

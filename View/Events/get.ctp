@@ -21,6 +21,9 @@ foreach ($events as $event) {
 		continue;
 	}
 
+	unset($categories[10162]); // Destacados
+	unset($categories[10469]); // Principales
+
 	$to_return['info_evento'] = array(
 		'event_id' => trim($Event['event_id']),
 		'post_id' => trim($Event['post_id']),

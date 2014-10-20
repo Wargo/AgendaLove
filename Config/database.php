@@ -63,7 +63,7 @@ class DATABASE_CONFIG {
 	public $default = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
-		'host' => '178.33.115.134',
+		'host' => '178.32.107.105',
 		'login' => 'love',
 		'password' => 'ARF4WwqsmULJR6Cm',
 		'database' => 'artvisual_loving',

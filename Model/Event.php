@@ -50,7 +50,7 @@ class Event extends AppModel {
 		$events = $this->find('all', array(
 			'conditions' => $conditions,
 			//'order' => array('event_start_time' => 'asc'),
-			'order' => array('event_start_date' => 'desc'),
+			'order' => array('event_end_date' => 'asc'),
 		));
 
 		return $events;

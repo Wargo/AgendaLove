@@ -25,4 +25,16 @@ class PostMeta extends AppModel {
 
 	}
 
+	function getTime($id) {
+		$return = $this->find('first', array(
+			'conditions' => array(
+				'post_id' => $id,
+				'meta_key' => '_wp_attached_file',
+			),
+			'fields' => array('meta_value')
+		));
+
+		debug($return);
+	}
+
 }
