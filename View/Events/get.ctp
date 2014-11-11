@@ -28,7 +28,8 @@ foreach ($events as $event) {
 		'event_id' => trim($Event['event_id']),
 		'post_id' => trim($Event['post_id']),
 		'nombre' => trim($Event['event_name']),
-		'descripcion' => trim(nl2br($Event['post_content'])),
+		'descripcion_html' => trim(nl2br($Event['post_content'])),
+		'descripcion' => strip_tags($Event['post_content']),
 		'images' => trim($image),
 		'hora_inicio' => trim($Event['event_start_time']),
 		'hora_fin' => trim($Event['event_end_time']),
@@ -40,6 +41,7 @@ foreach ($events as $event) {
 	);
 
 	$to_return['info_recinto'] = array(
+		'post_id' => trim($Location['post_id']),
 		'location_id' => trim($Location['location_id']),
 		'app_location_id' => trim($Location['id-app']),
 		'website' => trim($Location['web']),
