@@ -10,9 +10,16 @@ foreach ($events as $event) {
 
 	extract($event);
 
+	$Location = ClassRegistry::init('Location')->getLocation($Event['location_id']);
+
+	if ($location_id) {
+		if ($location_id != $Location['post_id']) {
+			continue;
+		}
+	}
+
 	$image = ClassRegistry::init('PostMeta')->getImage($Event['post_id']);
 	$categories = ClassRegistry::init('Category')->getCategories($Event['post_id']);
-	$Location = ClassRegistry::init('Location')->getLocation($Event['location_id']);
 
 	if (!$categories) {
 		continue;

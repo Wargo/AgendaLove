@@ -1,9 +1,9 @@
 <?php
 class EventsController extends AppController {
 
-	function get($debug = false, $day = 0, $category = null) {
+	function get($debug = false, $day = 0, $category = null, $location_id = null) {
 		extract($this->request->data);
-		$this->set(compact('day', 'category', 'debug'));
+		$this->set(compact('day', 'category', 'debug', 'location_id'));
 	}
 
 	function get2($category = null, $limit = 0, $debug = false) {
