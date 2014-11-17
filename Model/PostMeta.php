@@ -37,4 +37,11 @@ class PostMeta extends AppModel {
 		debug($return);
 	}
 
+	function getWeb($id) {
+		return $this->field('meta_value', array(
+			'post_id' => $id,
+			'meta_key' => 'web',
+		));
+	}
+
 }

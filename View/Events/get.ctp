@@ -20,6 +20,7 @@ foreach ($events as $event) {
 
 	$image = ClassRegistry::init('PostMeta')->getImage($Event['post_id']);
 	$categories = ClassRegistry::init('Category')->getCategories($Event['post_id']);
+	$web = ClassRegistry::init('PostMeta')->getWeb($Event['post_id']);
 
 	if (!$categories) {
 		continue;
@@ -44,7 +45,8 @@ foreach ($events as $event) {
 		'fecha_fin' => trim($Event['event_end_date']),
 		'precio' => null,
 		'link' => 'http://www.lovevalencia.com/evento/' . trim($Event['event_slug']),
-		'categorias' => $categories
+		'categorias' => $categories,
+		'web' => trim($web),
 	);
 
 	$to_return['info_recinto'] = array(
